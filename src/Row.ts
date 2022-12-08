@@ -10,12 +10,14 @@ export class Row extends BaseInput<TExclusion.Row> {
     text: HTMLSpanElement;
     xButton: HTMLButtonElement;
     newUrlInput: HTMLInputElement;
+    check: HTMLInputElement;
     constructor(data:TExclusion.Row) {
         super(data)
+        this.check = dom.check()
         this.xButton = dom.button("❌")
         this.text = dom.span(this.data.url)
         this.newUrlInput = dom.el("input", undefined, {display:"none"})
-        this.el.append(this.text, this.newUrlInput, this.xButton)
+        this.el.append(this.check, this.text, this.newUrlInput, this.xButton)
         this.updateData(data)
     }
 

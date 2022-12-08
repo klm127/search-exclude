@@ -10,4 +10,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     document.body.append(nav.el, testRow.el)
     nav.addNav("Row", testRow.el)
+
+    nav.setFromLocal()
 })   

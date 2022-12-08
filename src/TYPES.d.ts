@@ -5,6 +5,7 @@ export namespace TExclusion {
 
     type Row = {
         url: string
+        active: boolean
     }
 
     type Category = {

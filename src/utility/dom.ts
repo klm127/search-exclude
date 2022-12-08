@@ -40,11 +40,18 @@ function span(text?: string, cssClass?:string | string[], styles?:{[key:string]:
     return textEl("span", text, cssClass, styles)
 }
 
+function check(cssClass?: string | string[], styles?: {[key:string]:string}) {
+    let inel = el("input", cssClass, styles)
+    inel.type = "checkbox"
+    return inel
+}
+
 
 export const dom = {
     el: el,
     textEl: textEl,
     div: div,
     button: button,
-    span: span
+    span: span,
+    check: check
 }

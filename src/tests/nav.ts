@@ -1,5 +1,7 @@
 import { dom } from "../utility/dom";
 
+const TEST_NAV_LAST_STATE_KEY = "TEST-NAV-LAST"
+
 /**
  * TestNav handles navigation buttons for the UI Testing page.
  * 
@@ -11,7 +13,7 @@ import { dom } from "../utility/dom";
 export class TestNav {
     el: HTMLElement;
     els: Set<HTMLElement>
-    links: Map<HTMLButtonElement, HTMLElement>
+    links: Map<string, [HTMLButtonElement, HTMLElement, string]>
     buts: Set<HTMLButtonElement>
     constructor() {
         this.el = dom.el("nav")
@@ -23,16 +25,34 @@ export class TestNav {
         let originalDisplay = elToShowHide.style.display
         elToShowHide.style.display = "none"
         this.els.add(elToShowHide)
-        let listnr = ()=>{
-            for(let [but, window] of this.links.entries()) {
-                but.disabled = false
-                window.style.display = "none"
-            }
-            but.disabled = true
-            elToShowHide.style.display = originalDisplay
+        this.links.set(name, [but, elToShowHide, originalDisplay])
+        let listnr = () => {
+            this.selectNav(name)
         }
-        this.links.set(but, elToShowHide)
         but.addEventListener("click", listnr.bind(this))
         this.el.append(but)
+    }
+
+    hideAll() {
+        for(let [name, els] of this.links.entries()) {
+            let [but, window, originalDisplay] = els
+            but.disabled = false
+            window.style.display = "none"
+        }
+    }
+
+    setFromLocal() {
+        let last = localStorage.getItem(TEST_NAV_LAST_STATE_KEY)
+        if(this.links.has(last)) {
+            this.selectNav(last)
+        }
+    }
+
+    selectNav(nameString:string) {
+        this.hideAll()
+        let [but, window, originalDisplay] = this.links.get(nameString)
+        but.disabled = true
+        window.style.display = originalDisplay
+        localStorage.setItem(TEST_NAV_LAST_STATE_KEY, nameString)
     }
 }

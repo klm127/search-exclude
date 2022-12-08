@@ -15,7 +15,13 @@ function getMaybeUrl() {
     }
 }
 
+function getBool() {
+    let rando = Math.random()
+    return rando > 0.5
+}
+
 
 export const rando = {
-    maybeUrl: getMaybeUrl
+    maybeUrl: getMaybeUrl,
+    bool: getBool
 }
