@@ -9,6 +9,7 @@ export namespace TExclusion {
     }
 
     type Category = {
+        id: number
         name: string
         color: string
         checked: boolean
@@ -17,7 +18,6 @@ export namespace TExclusion {
 
     type List = {
         orderedList: TExclusion.Category[]
-        checked: Map<string, TExclusion.Category>
     }
 
 }
