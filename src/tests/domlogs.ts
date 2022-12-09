@@ -27,6 +27,12 @@ export class TestDomLogs {
         this.el.append(l.el)
         this.logged.push(l)
     }
+    evLog(e:string, s:CustomEvent) {
+        console.log("EV LOG RECEIVED")
+        let l = new Log(`Event: ${e}: ${JSON.stringify(s.detail)}`)
+        this.el.append(l.el)
+        this.logged.push(l)
+    }
 }
 
 

@@ -14,6 +14,7 @@ export class TestList extends DRTestWindow<TExclusion.List>{
                     color: "0xfffaaccd",
                     items: [
                         {
+                            id: 0,
                             url: "chegg.com",
                             active: true
                         }

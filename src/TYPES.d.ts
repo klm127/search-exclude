@@ -4,8 +4,15 @@
 export namespace TExclusion {
 
     type Row = {
+        id: number
         url: string
         active: boolean
+    }
+    type RowDeleteEvent = CustomEvent & {
+        detail: {id: number}
+    }
+    type RowUpdateEvent = CustomEvent & {
+        detail: Row
     }
 
     type Category = {

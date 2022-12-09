@@ -16,6 +16,7 @@ export class Category extends BaseInput<TExclusion.Category> {
     constructor(data: TExclusion.Category) {
         super(data)
         this.check = dom.check()
+        this.check.checked = data.checked
         this.xButton = dom.button("❌")
         this.editButton = dom.button("✏")
         this.textName = dom.span(data.name)
