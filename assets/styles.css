@@ -1,16 +1,41 @@
+@font-face {
+    font-family: "Rubik";
+    src: url("./fonts/Rubik-Light.ttf");
+}
+
 body {
-    background-color: aquamarine;
+    background-color: white;
+    font-family: "Rubik";
+}
+
+.nosearch-category {
+    background-color: rgb(222, 222, 232);
+    padding: 4px;
 }
 
 .nosearch-category > div {
     padding-left: 1em;
 }
 
-.nosearch-row > span {
-    display: inline-block;
-    width: 10em;
+
+input[type="text"] {
+    font-family: "Rubik";
 }
-.nosearch-row > input[type="text"] {
-    display: inline-block;
-    width: 10em;
+
+input[type="checkbox"] {
+    color: orange;
+}
+
+.bi-before {
+    width: 25px;
+}
+.bi-text {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.bi-after {
+    display: flex;
+    justify-content: right;
+    margin-left: auto;
 }

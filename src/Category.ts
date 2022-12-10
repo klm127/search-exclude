@@ -31,9 +31,11 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
         this.dropDownButton = dom.button("🔽")
         this.containedRows = dom.div()
         this.containedRows.style.display = "none"
-        this.after.append(this.xButton, this.dropDownButton, this.containedRows)
+        this.after.append(this.xButton, this.dropDownButton)
         this.newRow = dom.div("new row ✏")
         this.containedRows.append(this.newRow)
+
+        this.el.append(this.containedRows)
 
         this.listen()
         this.instancedRows = new Map()

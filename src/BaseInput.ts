@@ -1,3 +1,4 @@
+import { STYLES } from "./STYLES"
 import { dom } from "./utility/dom"
 
 export class BaseInput<T>{
@@ -65,9 +66,9 @@ export class BaseInputWithTextEntry<T> extends BaseInput<T>{
     text: HTMLSpanElement
     constructor(data: T) {
         super(data)
-        this.before = dom.span(undefined,undefined, {display:"inline-block"})
-        this.textZone = dom.span(undefined, undefined, {display:"inline-block"})
-        this.after = dom.span(undefined, undefined, {display:"inline-block"})
+        this.before = dom.span(undefined, STYLES.baseInput.before, {display:"inline-flex"})
+        this.textZone = dom.span(undefined, STYLES.baseInput.text, {display:"inline-flex"})
+        this.after = dom.span(undefined, STYLES.baseInput.after, {display:"inline-flex"})
 
         this.el.append(this.before, this.textZone, this.after)
 
@@ -86,7 +87,6 @@ export class BaseInputWithTextEntry<T> extends BaseInput<T>{
         this.textInput.style.display = "inline-block"
     }
     private enterOnInput(e:any) {
-        console.log("enter on input fired")
         let kbe = e as KeyboardEvent
         if(kbe.key == "Enter") {
             this.inputChanged()

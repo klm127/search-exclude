@@ -1,4 +1,5 @@
 import { Category } from "../Category";
+import { EVENTS } from "../Events";
 import { TExclusion } from "../TYPES";
 import { DRTestWindow } from "./DRTestWindow";
 import { rando } from "./rando";
@@ -36,17 +37,10 @@ export class TestCategory extends DRTestWindow<TExclusion.Category>{
                 })
             } as TExclusion.Category
         }, Category)
-        // document.addEventListener(CafeEventHandle, (e:any)=> {
-        //     this.logs.log("Received an event of type " + CafeEventHandle)
-        //     this.logs.log(" It has data: "+ JSON.stringify(e.detail))
-        // })
-
-        // this.bindRandomizer(()=> {
-        //     return {
-        //         active: rando.bool(),
-        //         url: rando.maybeUrl()
-        //     } as TExclusion.Row
-        // }, Row)
+        document.addEventListener(EVENTS.category.update, (e)=>{
+            this.logs.evLog(EVENTS.category.update, e as CustomEvent)
+        }
+        )
         
     }
 }
