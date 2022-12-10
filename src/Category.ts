@@ -1,33 +1,40 @@
-import { BaseInput } from "./BaseInput";
+import { BaseInput, BaseInputWithTextEntry } from "./BaseInput";
+import { EVENTS } from "./Events";
 import { Row } from "./Row";
+import { STYLES } from "./STYLES";
 import { TExclusion } from "./TYPES";
+import { copy } from "./utility/copy";
 import { dom } from "./utility/dom";
 
 
 
-export class Category extends BaseInput<TExclusion.Category> {
+export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
     containedRows: any;
     check: HTMLInputElement;
     xButton: HTMLButtonElement;
-    editButton: HTMLButtonElement;
     newCategoryNameInput: HTMLInputElement;
     dropDownButton: HTMLButtonElement;
     textName: HTMLSpanElement;
     instancedRows: Map<number, Row>
+    newRow: HTMLDivElement;
 
     constructor(data: TExclusion.Category) {
         super(data)
+        this.el.classList.add(STYLES.category)
         this.check = dom.check()
         this.check.checked = data.checked
+        this.before.append(this.check)
+
+        this.text.innerHTML = data.name
+
         this.xButton = dom.button("❌")
-        this.editButton = dom.button("✏")
-        this.textName = dom.span(data.name)
-        this.newCategoryNameInput = dom.el("input", undefined, {display:"none"})
         this.dropDownButton = dom.button("🔽")
         this.containedRows = dom.div()
         this.containedRows.style.display = "none"
+        this.after.append(this.xButton, this.dropDownButton, this.containedRows)
+        this.newRow = dom.div("new row ✏")
+        this.containedRows.append(this.newRow)
 
-        this.el.append(this.check, this.textName, this.newCategoryNameInput, this.editButton, this.dropDownButton, this.xButton, this.containedRows)
         this.listen()
         this.instancedRows = new Map()
         this.createRows()
@@ -45,11 +52,19 @@ export class Category extends BaseInput<TExclusion.Category> {
     private toggleDropDown() {
         if(this.containedRows.style.display == "block") {
             this.containedRows.style.display = "none"
-            this.dropDownButton.textContent = "⬆"
+            this.dropDownButton.textContent = "🔽"
         } else {
             this.containedRows.style.display = "block"
-            this.dropDownButton.textContent = "🔽"
+            this.dropDownButton.textContent = "⬆"
         }
-
     }
+
+    emitUpdate(): void {
+        this.data.name = this.text.textContent
+        let rowUpdateEvent = new CustomEvent(EVENTS.category.update, {
+            detail: copy.shallow(this.data)
+        })
+        document.dispatchEvent(rowUpdateEvent)
+    }
+    
 }

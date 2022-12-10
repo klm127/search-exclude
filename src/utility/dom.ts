@@ -39,6 +39,13 @@ function button(text?: string, cssClass?:string | string[], styles?:{[key:string
 function span(text?: string, cssClass?:string | string[], styles?:{[key:string]:string}) {
     return textEl("span", text, cssClass, styles)
 }
+function textInput(placeholder?: string, cssClass?: string|string[], styles?:{[key:string]:string}) {
+    let inel = el("input", cssClass, styles)
+    inel.placeholder = placeholder
+    inel.type = "text"
+    return inel
+
+}
 
 function check(cssClass?: string | string[], styles?: {[key:string]:string}) {
     let inel = el("input", cssClass, styles)
@@ -53,5 +60,6 @@ export const dom = {
     div: div,
     button: button,
     span: span,
-    check: check
+    check: check,
+    textInput: textInput
 }

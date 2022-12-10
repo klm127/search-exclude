@@ -1,3 +1,16 @@
 body {
     background-color: aquamarine;
 }
+
+.nosearch-category > div {
+    padding-left: 1em;
+}
+
+.nosearch-row > span {
+    display: inline-block;
+    width: 10em;
+}
+.nosearch-row > input[type="text"] {
+    display: inline-block;
+    width: 10em;
+}
