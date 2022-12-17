@@ -12,12 +12,15 @@ export class TestCategory extends DRTestWindow<TExclusion.Category>{
             color: "red",
             checked: true,
             items: [{
+                id: 0,
                 url: "www.chegg.com",
                 active: true
             },{
+                id: 1,
                 url: "www.homeworkhelp.com",
                 active:true
             },{
+                id: 2,
                 url: "www.yahoo.com/answers",
                 active: false
             }
@@ -31,6 +34,7 @@ export class TestCategory extends DRTestWindow<TExclusion.Category>{
                 checked: rando.bool(),
                 items: rando.array(10, ()=>{
                     return {
+                        id: rando.next.int(),
                         url: rando.maybeUrl(),
                         active: rando.bool()
                     } as TExclusion.Row

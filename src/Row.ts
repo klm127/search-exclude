@@ -30,13 +30,16 @@ export class Row extends BaseInputWithTextEntry<TExclusion.Row> {
         this.clickListen(this.xButton, this.xButtonClicked)
         this.clickListen(this.check, this.checkButtonClicked)
     }
+
+    /** Constructs a rowDeleteEvent and dispatches it using BaseInput.emit */
     private xButtonClicked() {
         let rowDeleteEvent = new CustomEvent(EVENTS.row.delete, {
             detail: {
                 id: this.data.id
             }
         })
-        document.dispatchEvent(rowDeleteEvent)
+        // console.log("xButton clicked, emitting:", rowDeleteEvent, "my data:", this.data)
+        this.emit(rowDeleteEvent)
     }
     private checkButtonClicked() {
         this.data.active = !this.data.active
