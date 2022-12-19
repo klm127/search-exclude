@@ -5,6 +5,7 @@ export const EVENTS = {
         delete: "row-delete-event"
     },
     category: {
-        update: "category-update-event"
+        update: "category-update-event",
+        delete: "category-delete-event"
     }
 }

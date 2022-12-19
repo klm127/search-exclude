@@ -46,11 +46,15 @@ export class Row extends BaseInputWithTextEntry<TExclusion.Row> {
         this.emitUpdate()
     }
 
+    /** 
+     * @Override BaseInputWithTextEntry.emitUpdate
+     * Creates a rowUpdateEvent and emits on all emitters (BaseInput.emit)
+     */
     emitUpdate() {
         this.data.url = this.text.textContent
         let rowUpdateEvent = new CustomEvent(EVENTS.row.update, {
             detail: copy.shallow(this.data)
         })
-        document.dispatchEvent(rowUpdateEvent)
+        this.emit(rowUpdateEvent)
     }
 }

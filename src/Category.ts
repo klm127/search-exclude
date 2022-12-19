@@ -47,11 +47,15 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
         this.instancedRows = new Map()
         this.createRows()
         this.listen()
+
+        // console.log("CATEGORY INSTANCED:", this)
     }
     /** instantiates all listeners ; part of constructor */
     private listen() {
         this.clickListen(this.dropDownButton, this.toggleDropDown)
         this.clickListen(this.el, this.onRowDelete as any, true, EVENTS.row.delete)
+        this.clickListen(this.newRow, this.onNewRowClicked as any, true)
+        this.clickListen(this.xButton, this.xButtonClicked, true)
     }
     /** instantiates rows; part of constructor */
     private createRows() {
@@ -60,7 +64,9 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
             // this is important; it allows Row to emit its events on this.el
             nRow.addEmitter(this.el)
             this.instancedRows.set(row.id, nRow)
-            this.containedRows.append(nRow.el)
+            this.containedRows.insertBefore(nRow.el, this.containedRows.firstChild)
+            this.containedRows.insertBefore(this.newRow, this.containedRows.firstChild)
+
         }
     }
     /** shows or hides the containedRows div when button clicked; internal listener */
@@ -79,7 +85,7 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
         let targetToDelete = this.instancedRows.get(e.detail.id)
         if(targetToDelete) {
             targetToDelete.destroy()
-            this.instancedRows.set(e.detail.id, undefined)
+            this.instancedRows.delete(e.detail.id)
         }
         let i= 0;
         for(; i < this.data.items.length; i++) {
@@ -91,13 +97,46 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
         this.data.items.splice(i, 1)
     }
 
-    /** emits a shallow copy of its data as the detail of a custom event */
+    /** dispatched by Row when data changes; e.g. check button toggled, url changed */
+    private onRowUpdate(e: CustomEvent<TExclusion.Row>) {
+        this.emitUpdate()
+    }
+
+    /** Constructs a categoryDeleteEvent and dispatches it using BaseInput.emit */
+    private xButtonClicked() {
+        let categoryDeleteEvent = new CustomEvent(EVENTS.category.delete, {
+            detail: {
+                id: this.data.id
+            }
+        })
+        // console.log("xButton clicked, emitting:", rowDeleteEvent, "my data:", this.data)
+        this.emit(categoryDeleteEvent)
+    }
+
+    /** Called when the new row button is clicked. Instances a new row and selects it. */
+    private onNewRowClicked() {
+        let next_id = Math.max(...Array.from(this.instancedRows.keys())) + 1
+        let rowdata : TExclusion.Row = {
+            id: next_id,
+            url: "enter url.com",
+            active: true
+        }
+        let nRow = new Row(rowdata)
+        this.data.items.push(rowdata)
+        this.instancedRows.set(next_id, nRow)
+        nRow.addEmitter(this.el)
+        this.containedRows.insertBefore(nRow.el, this.containedRows.firstChild)
+        this.containedRows.insertBefore(this.newRow, this.containedRows.firstChild)
+        nRow.focus()
+    }
+
+    /** emit update event to all registered emitters */
     emitUpdate(): void {
         this.data.name = this.text.textContent
         let categoryUpdateEvent = new CustomEvent(EVENTS.category.update, {
-            detail: copy.shallow(this.data)
+            detail: this.data
         })
-        document.dispatchEvent(categoryUpdateEvent)
+        this.emit(categoryUpdateEvent)
     }
     
 }

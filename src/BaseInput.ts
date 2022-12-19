@@ -110,12 +110,15 @@ export class BaseInputWithTextEntry<T> extends BaseInput<T>{
         this.clickListen(this.text, this.textClicked)
         this.clickListen(this.textInput, this.inputChanged, true, "change")
         this.clickListen(this.textInput, this.enterOnInput, true, "keydown")
+        this.clickListen(this.textInput, this.inputChanged, true, "focusout")
     }
     
     private textClicked() {
         this.text.style.display = "none"
-        this.textInput.value = this.text.textContent
+        this.textInput.value = this.text.textContent.trim()
         this.textInput.style.display = "inline-block"
+        this.textInput.focus()
+        this.textInput.setSelectionRange(0, this.textInput.value.length)
     }
     private enterOnInput(e:any) {
         let kbe = e as KeyboardEvent
@@ -127,7 +130,15 @@ export class BaseInputWithTextEntry<T> extends BaseInput<T>{
         this.textInput.style.display = "none"
         this.text.style.display = "inline-block"
         this.text.textContent = this.textInput.value
+        if(this.text.textContent == "") {
+            this.text.innerHTML = "&nbsp;&nbsp;"
+        }
         this.emitUpdate()
+    }
+
+    /** Can be called when baseInputWithTextEntry is created. Activates text input and sets focus to it. */
+    focus() {
+        this.textClicked()
     }
 
     emitUpdate() {
