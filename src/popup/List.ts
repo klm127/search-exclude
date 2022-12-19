@@ -100,7 +100,16 @@ export class List extends BaseInput<TExclusion.List> {
         this.saveResult = dom.span("Saved!", STYLES.list.saveResultFadeAnimation)
         this.saveDiv.append(this.saveResult)
 
-        let data = JSON.stringify(this.data)
-        localStorage.setItem(CONSTS.localStorage, data)
+        this.emitUpdate()
+
+        //let data = JSON.stringify(this.data)
+        //localStorage.setItem(CONSTS.localStorage, data)
+    }
+
+    private emitUpdate() {
+        let customEvent = new CustomEvent<TExclusion.List>(EVENTS.list.update, {
+            detail: this.data
+        })
+        this.emit(customEvent)
     }
 }

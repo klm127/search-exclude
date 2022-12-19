@@ -11,31 +11,34 @@ export class PGenerator {
     }
 
     regenerateUrls() {
+        let me = this
 
-        let localData = JSON.parse(localStorage.getItem(CONSTS.localStorage)) as TExclusion.List
-
-        if(!localData || !localData.orderedList) {
-            localData = {
-                orderedList : []
+        return browser.storage.local.get(CONSTS.localStorage).then( (rawdat)=> {
+            let listDataString = rawdat[CONSTS.localStorage]
+            if(listDataString) {
+                let listData = JSON.parse(listDataString)
+                if(listData.orderedList) {
+                    return listData as TExclusion.List
+                } else {
+                    return {orderedList: []} as TExclusion.List
+                }
             }
-        }
-
-        this.data = localData
-        
-        this.urls = []
-        for(let cat of this.data.orderedList) {
-            if(cat.checked) {
-                for(let url of cat.items) {
-                    if(url.active) {
-                        this.urls.push(url.url)
+        }).then( (listData)=> {
+            me.data = listData
+            me.urls = []
+            for(let cat of this.data.orderedList) {
+                if(cat.checked) {
+                    for(let url of cat.items) {
+                        if(url.active) {
+                            me.urls.push(url.url)
+                        }
                     }
                 }
             }
-        }
+        })
     }
 
     getGoogleParam() : string {
-        this.regenerateUrls()
         let outstr = ""
         let i = 0;
         for(; i < this.urls.length - 1; i++) {
