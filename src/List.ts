@@ -1,6 +1,8 @@
 import { BaseInput } from "./BaseInput";
 import { Category } from "./Category";
+import { CONSTS } from "./CONSTS";
 import { EVENTS } from "./Events";
+import { STYLES } from "./STYLES";
 import { TExclusion } from "./TYPES";
 import { dom } from "./utility/dom";
 
@@ -11,28 +13,44 @@ export class List extends BaseInput<TExclusion.List> {
     categories : Map<number, Category>
     newCategory: HTMLDivElement;
     categoriesContainer: HTMLDivElement;
+    saveButton: HTMLButtonElement;
+    saveResult: HTMLSpanElement;
+    saveDiv: HTMLDivElement;
 
     constructor(data: TExclusion.List) {
         super(data)
+        this.el.style.position = "relative"
+        this.el.classList.add(STYLES.list.base)
         this.categories = new Map()
         // console.log("list created", data.orderedList)
         this.newCategory = dom.div("new category ✏")
         this.categoriesContainer = dom.div()
-        this.el.append(this.newCategory, this.categoriesContainer)
+
+        this.saveDiv = dom.div()
+        this.saveButton = dom.button("save changes", STYLES.list.saveButton, {display:"none"})
+        this.saveResult = dom.span("", STYLES.list.saveResult)
+        this.saveDiv.append(this.saveButton, this.saveResult)
+
+        this.el.append(this.saveDiv, this.newCategory, this.categoriesContainer)
         for(let category of this.data.orderedList) {
             let newCat = new Category(category)
             this.categories.set(category.id, newCat)
             this.categoriesContainer.insertBefore(newCat.el, this.categoriesContainer.firstChild)
             newCat.addEmitter(this.el)
         }
+
         this.listen()
     }
 
+    /** Part of constructor; instantiates all listeners */
     private listen() {
         this.clickListen(this.newCategory, this.newCategoryClicked)
         this.clickListen(this.el, this.onCategoryDelete as any, true, EVENTS.category.delete)
+        this.clickListen(this.el, this.onCategoryUpdate as any, true, EVENTS.category.update)
+        this.clickListen(this.saveButton, this.onSaveButtonClicked as any, true)
     }
 
+    /** Called when new category button is clicked. Instances a new category, adds it to .data and the DOM */
     private newCategoryClicked() {
         let nextId = Math.max(...Array.from(this.categories.keys())) + 1
         let catData : TExclusion.Category = {
@@ -65,5 +83,24 @@ export class List extends BaseInput<TExclusion.List> {
             }
         }
         this.data.orderedList.splice(i, 1)
+    }
+
+    /** Called when something updates on an inner category. Shows the save button. */
+    private onCategoryUpdate(e: CustomEvent<TExclusion.Category>) {
+        this.saveButton.style.display = "inline-block"
+        console.log("cate update")
+    }
+
+    /** Called when save button is clicked. */
+    private onSaveButtonClicked() {
+        this.saveButton.style.display = "none"
+
+        this.saveResult.remove()
+
+        this.saveResult = dom.span("Saved!", STYLES.list.saveResultFadeAnimation)
+        this.saveDiv.append(this.saveResult)
+
+        let data = JSON.stringify(this.data)
+        localStorage.setItem(CONSTS.localStorage, data)
     }
 }

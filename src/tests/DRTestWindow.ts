@@ -11,11 +11,12 @@
  
  
  type class_that_takes<T> = {
-     new(d:T):instanceMustHave
+     new(d:T):instanceMustHave<T>
  
  } 
  
- type instanceMustHave = {
+ type instanceMustHave<T> = {
+     data: T
      destroy(): void
      el: HTMLElement
  }
@@ -26,7 +27,7 @@
      el: HTMLDivElement
  
      container: HTMLDivElement
-     toDestroy: {destroy(): void}[]
+     toDestroy: {data:DType, destroy(): void}[]
      nav: HTMLElement
      clearButton: HTMLButtonElement;
  
@@ -43,7 +44,14 @@
          this.clearButton = dom.button("clear")
          this.clearButton.addEventListener("click", this.clear.bind(this))
          this.nav.append(this.clearButton)
+
  
+     }
+
+     createDataLogButton() {
+        let logButton = dom.button("console.log all data")
+        logButton.addEventListener("click", this.logData.bind(this) )
+        this.nav.append(logButton)
      }
  
      clear() {
@@ -85,6 +93,12 @@
              this.logs.log("---- Data: " + JSON.stringify(e.detail))
          }
          document.addEventListener(evname, f.bind(this))
+     }
+
+     logData() {
+        for(let el of this.toDestroy) {
+            console.log(el.data)
+        }
      }
  
  

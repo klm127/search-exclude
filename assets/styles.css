@@ -6,6 +6,7 @@
 body {
     background-color: white;
     font-family: "Rubik";
+    min-width: 400px;
 }
 
 .nosearch-category {
@@ -38,4 +39,17 @@ input[type="checkbox"] {
     display: flex;
     justify-content: right;
     margin-left: auto;
+}
+
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+
+}
+.nosearch-list-saveresult-saveanimation {
+    animation: fadeOut 0.5s linear 0.5s 1 normal forwards;
+    margin: 10px;
+}
+.nosearch-list-savebutton {
+    margin: 10px;
 }

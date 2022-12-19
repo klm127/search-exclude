@@ -54,8 +54,10 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
     private listen() {
         this.clickListen(this.dropDownButton, this.toggleDropDown)
         this.clickListen(this.el, this.onRowDelete as any, true, EVENTS.row.delete)
+        this.clickListen(this.el, this.onRowUpdate as any, true, EVENTS.row.update)
         this.clickListen(this.newRow, this.onNewRowClicked as any, true)
         this.clickListen(this.xButton, this.xButtonClicked, true)
+        this.clickListen(this.check, this.checkButtonClicked)
     }
     /** instantiates rows; part of constructor */
     private createRows() {
@@ -111,6 +113,11 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
         })
         // console.log("xButton clicked, emitting:", rowDeleteEvent, "my data:", this.data)
         this.emit(categoryDeleteEvent)
+    }
+
+    private checkButtonClicked() {
+        this.data.checked = !this.data.checked
+        this.emitUpdate()
     }
 
     /** Called when the new row button is clicked. Instances a new row and selects it. */

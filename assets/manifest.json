@@ -8,12 +8,16 @@
 
 
     "icons": {
+        "48": "icons/funface.png",
         "98": "icons/funface.png"
     },
 
     "browser_action": {
-        "default_title": "Comment Anywhere (tests)",
-        "default_icon": "icon/funface.png",
+        "default_title": "Search Exclude",
+        "default_icon": {
+            "16": "icons/funface.png",
+            "32": "icons/funface.png"
+        },
         "default_popup": "popup.html"
     },
     
@@ -25,9 +29,7 @@
         }
     ],
 
-    "content_security_policy": {
-        "extension_pages": "script-src 'self' https://example.com; object-src 'self'"
-    },
+    "content_security_policy": "default-src 'self'",
       
 
     "permissions": [

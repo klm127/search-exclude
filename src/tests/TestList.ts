@@ -23,5 +23,7 @@ export class TestList extends DRTestWindow<TExclusion.List>{
                 }
             ]
         }, List)
+
+        this.createDataLogButton()
     }
 }
