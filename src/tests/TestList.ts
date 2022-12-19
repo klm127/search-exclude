@@ -1,4 +1,4 @@
-import { List } from "../List";
+import { List } from "../popup/List";
 import { TExclusion } from "../TYPES";
 import { DRTestWindow } from "./DRTestWindow";
 import { rando } from "./rando";

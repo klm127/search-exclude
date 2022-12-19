@@ -1,9 +1,9 @@
 import { BaseInput, BaseInputWithTextEntry } from "./BaseInput";
-import { EVENTS } from "./Events";
-import { STYLES } from "./STYLES";
-import { TExclusion } from "./TYPES";
-import { copy } from "./utility/copy";
-import { dom } from "./utility/dom";
+import { EVENTS } from "../Events";
+import { STYLES } from "../STYLES";
+import { TExclusion } from "../TYPES";
+import { copy } from "../utility/copy";
+import { dom } from "../utility/dom";
 
 
 /**

@@ -1,10 +1,10 @@
 import { BaseInput, BaseInputWithTextEntry } from "./BaseInput";
-import { EVENTS } from "./Events";
+import { EVENTS } from "../Events";
 import { Row } from "./Row";
-import { STYLES } from "./STYLES";
-import { TExclusion } from "./TYPES";
-import { copy } from "./utility/copy";
-import { dom } from "./utility/dom";
+import { STYLES } from "../STYLES";
+import { TExclusion } from "../TYPES";
+import { copy } from "../utility/copy";
+import { dom } from "../utility/dom";
 
 
 

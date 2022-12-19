@@ -1,6 +1,6 @@
-import { CONSTS } from "./CONSTS"
+import { CONSTS } from "../CONSTS"
 import { List } from "./List"
-import { TExclusion } from "./TYPES"
+import { TExclusion } from "../TYPES"
 
 
 var localData = JSON.parse(localStorage.getItem(CONSTS.localStorage)) as TExclusion.List

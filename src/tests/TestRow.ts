@@ -1,5 +1,5 @@
 import { EVENTS } from "../Events";
-import { Row } from "../Row";
+import { Row } from "../popup/Row";
 import { TExclusion } from "../TYPES";
 import { DRTestWindow } from "./DRTestWindow";
 import { rando } from "./rando";

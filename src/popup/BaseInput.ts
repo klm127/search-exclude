@@ -1,5 +1,5 @@
-import { STYLES } from "./STYLES"
-import { dom } from "./utility/dom"
+import { STYLES } from "../STYLES"
+import { dom } from "../utility/dom"
 
 export class BaseInput<T>{
     data: T

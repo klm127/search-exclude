@@ -1,4 +1,4 @@
-import { Category } from "../Category";
+import { Category } from "../popup/Category";
 import { EVENTS } from "../Events";
 import { TExclusion } from "../TYPES";
 import { DRTestWindow } from "./DRTestWindow";

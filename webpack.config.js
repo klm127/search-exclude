@@ -5,7 +5,8 @@ module.exports = {
     devtool: 'source-map',
     mode:"production",
     entry: {
-        popup: "./js/popup_entry.js",
+        popup: "./js/popup/popup_entry.js",
+        google: "./js/contentScripts/google.js",
         //background: "./js/background.js",
         tester: "./js/tests/testEntry.js"
     },
@@ -15,7 +16,7 @@ module.exports = {
         clean: true
     },
     plugins: [
-        new CopyPlugin({
+        new CopyPlugin({ 
             patterns: [
                 {from: "assets"}
             ]

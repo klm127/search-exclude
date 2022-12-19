@@ -1,10 +1,10 @@
 import { BaseInput } from "./BaseInput";
 import { Category } from "./Category";
-import { CONSTS } from "./CONSTS";
-import { EVENTS } from "./Events";
-import { STYLES } from "./STYLES";
-import { TExclusion } from "./TYPES";
-import { dom } from "./utility/dom";
+import { CONSTS } from "../CONSTS";
+import { EVENTS } from "../Events";
+import { STYLES } from "../STYLES";
+import { TExclusion } from "../TYPES";
+import { dom } from "../utility/dom";
 
 
 
