@@ -13,7 +13,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname,"dist"),
         filename: "[name].js",
-        clean: true
+        clean: true 
     },
     plugins: [
         new CopyPlugin({ 
