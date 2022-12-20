@@ -1,5 +1,5 @@
 import { BaseInput, BaseInputWithTextEntry } from "./BaseInput";
-import { EVENTS } from "../Events";
+import { EVENTS } from "../SE_EVENTS";
 import { STYLES } from "../STYLES";
 import { TExclusion } from "../TYPES";
 import { copy } from "../utility/copy";

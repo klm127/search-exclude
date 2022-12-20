@@ -1,4 +1,4 @@
-import { EVENTS } from "../Events";
+import { EVENTS } from "../SE_EVENTS";
 import { Row } from "../popup/Row";
 import { TExclusion } from "../TYPES";
 import { DRTestWindow } from "./DRTestWindow";

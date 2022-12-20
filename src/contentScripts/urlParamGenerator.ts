@@ -49,4 +49,16 @@ export class PGenerator {
         outstr+= `-site:${last_url}`
         return outstr
     }
+
+    getDuckDuckGoParam() : string {
+        let outstr = ""
+        let i = 0;
+        for(; i < this.urls.length - 1; i++) {
+            let url = this.urls[i]
+            outstr+= `-site:${url} `
+        }
+        let last_url = this.urls[i]
+        outstr+= `-site:${last_url}`
+        return outstr        
+    }
 }

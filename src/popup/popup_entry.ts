@@ -1,7 +1,7 @@
 import { CONSTS } from "../CONSTS"
 import { List } from "./List"
 import { TExclusion } from "../TYPES"
-import { EVENTS } from "../EVENTS"
+import { EVENTS } from "../SE_EVENTS"
 
 
 var list: List

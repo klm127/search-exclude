@@ -26,6 +26,10 @@
         {
             "matches": ["*://*.google.com/search*"],
             "js": ["google.js"]
+        },
+        {
+            "matches": ["*://*.duckduckgo.com/?*"],
+            "js": ["duckduckgo.js"]
         }
     ],
 

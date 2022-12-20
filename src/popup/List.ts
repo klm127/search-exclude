@@ -1,7 +1,7 @@
 import { BaseInput } from "./BaseInput";
 import { Category } from "./Category";
 import { CONSTS } from "../CONSTS";
-import { EVENTS } from "../Events";
+import { EVENTS } from "../SE_EVENTS";
 import { STYLES } from "../STYLES";
 import { TExclusion } from "../TYPES";
 import { dom } from "../utility/dom";
@@ -83,12 +83,12 @@ export class List extends BaseInput<TExclusion.List> {
             }
         }
         this.data.orderedList.splice(i, 1)
+        this.onCategoryUpdate({} as any)
     }
 
     /** Called when something updates on an inner category. Shows the save button. */
     private onCategoryUpdate(e: CustomEvent<TExclusion.Category>) {
         this.saveButton.style.display = "inline-block"
-        console.log("cate update")
     }
 
     /** Called when save button is clicked. */

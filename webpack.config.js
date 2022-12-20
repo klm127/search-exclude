@@ -7,7 +7,7 @@ module.exports = {
     entry: {
         popup: "./js/popup/popup_entry.js",
         google: "./js/contentScripts/google.js",
-        //background: "./js/background.js",
+        duckduckgo: "./js/contentScripts/duckduckgo.js",
         tester: "./js/tests/testEntry.js"
     },
     output: {

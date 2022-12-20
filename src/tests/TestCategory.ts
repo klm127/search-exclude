@@ -1,5 +1,5 @@
 import { Category } from "../popup/Category";
-import { EVENTS } from "../Events";
+import { EVENTS } from "../SE_EVENTS";
 import { TExclusion } from "../TYPES";
 import { DRTestWindow } from "./DRTestWindow";
 import { rando } from "./rando";
