@@ -43,10 +43,10 @@ export class PGenerator {
         let i = 0;
         for(; i < this.urls.length - 1; i++) {
             let url = this.urls[i]
-            outstr+= `-site%3A${url}+`
+            outstr+= `-site:${url} `
         }
         let last_url = this.urls[i]
-        outstr+= `-site%3A${last_url}`
+        outstr+= `-site:${last_url}`
         return outstr
     }
 }
