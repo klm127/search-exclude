@@ -18,7 +18,7 @@ export class Row extends BaseInputWithTextEntry<TExclusion.Row> {
         super(data)
         this.check = dom.check()
         this.check.checked = data.active
-        this.xButton = dom.button("❌")
+        this.xButton = dom.button("", STYLES.widget.trash)
         this.text.innerHTML = this.data.url ? this.data.url : "No URL"
         this.textInput.placeholder = "Input URL to block here."
         this.before.append(this.check)

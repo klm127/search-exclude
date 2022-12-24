@@ -11,5 +11,11 @@ export const STYLES = {
         saveButton: "nosearch-list-savebutton",
         saveResult: "nosearch-list-saveresult",
         saveResultFadeAnimation: "nosearch-list-saveresult-saveanimation"
+    },
+    widget: {
+        dropdown: "dropdownbutton-up",
+        dropdown_reversed: "dropdownbutton-reversed",
+        trash: "trashbutton",
+        new: "newbutton"
     }
 }

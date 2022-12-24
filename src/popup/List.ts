@@ -23,7 +23,7 @@ export class List extends BaseInput<TExclusion.List> {
         this.el.classList.add(STYLES.list.base)
         this.categories = new Map()
         // console.log("list created", data.orderedList)
-        this.newCategory = dom.div("new category ✏")
+        this.newCategory = dom.div("category", STYLES.widget.new)
         this.categoriesContainer = dom.div()
 
         this.saveDiv = dom.div()

@@ -36,12 +36,12 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
         // before is part of BaseInputWithTextEntry
         this.before.append(this.check)
         this.text.innerHTML = data.name
-        this.xButton = dom.button("❌")
-        this.dropDownButton = dom.button("🔽")
+        this.xButton = dom.button(undefined, STYLES.widget.trash)
+        this.dropDownButton = dom.button(undefined, STYLES.widget.dropdown)
         this.containedRows = dom.div()
         this.containedRows.style.display = "none"
-        this.after.append(this.xButton, this.dropDownButton)
-        this.newRow = dom.div("new row ✏")
+        this.after.append(this.dropDownButton, this.xButton)
+        this.newRow = dom.div("row", STYLES.widget.new)
         this.containedRows.append(this.newRow)
         this.el.append(this.containedRows)
         this.instancedRows = new Map()
@@ -75,10 +75,10 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
     private toggleDropDown() {
         if(this.containedRows.style.display == "block") {
             this.containedRows.style.display = "none"
-            this.dropDownButton.textContent = "🔽"
+            this.dropDownButton.classList.remove(STYLES.widget.dropdown_reversed)
         } else {
             this.containedRows.style.display = "block"
-            this.dropDownButton.textContent = "⬆"
+            this.dropDownButton.classList.add(STYLES.widget.dropdown_reversed)
         }
     }
 
@@ -90,12 +90,13 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
             this.instancedRows.delete(e.detail.id)
         }
         let i= 0;
-        for(; i < this.data.items.length; i++) {
+        for(i=0; i < this.data.items.length; i++) {
             let test_row = this.data.items[i]
             if(test_row.id == e.detail.id) {
                 break;
             }
         }
+        console.log(e.detail, "now splicing ", i, "1")
         this.data.items.splice(i, 1)
     }
 
@@ -122,7 +123,8 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
 
     /** Called when the new row button is clicked. Instances a new row and selects it. */
     private onNewRowClicked() {
-        let next_id = Math.max(...Array.from(this.instancedRows.keys())) + 1
+        let next_id  = this.instancedRows.size > 0 ? Math.max(...Array.from(this.instancedRows.keys())) + 1 : 0
+        console.log("new row to be made with id:", next_id)
         let rowdata : TExclusion.Row = {
             id: next_id,
             url: "enter url.com",
