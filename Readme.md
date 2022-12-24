@@ -1,4 +1,4 @@
-# search Exclude 
+# Search Exclude
 
 Search Exclude is a browser extension which allows users to maintain a list of sites to permanently exclude from their search results on major browsers.
 
@@ -8,9 +8,9 @@ Search Exclude is not yet listed on the extension store but can be tested manual
 
 # Rationale
 
-Some sites that are less than useful appear frequently in browser extensions, and it is too tedious to manually include all the site exclusions. This should help permanently remove useless content from search results.
+Some sites that are less than useful appear frequently in search results and it is tedious to manually include all the site exclusions. By saving toggle-able lists of sites to excludes, search efficiency can be improved.
 
-Additionally, I want to publish a relatively simple but useful browser extension to learn about browser extensions generally and the publishing process.
+Personally, I want to publish a relatively simple but useful browser extension to learn about browser extensions generally and the publishing process.
 ### Installing
 
 - Download the latest release, a .zip file.
@@ -31,12 +31,13 @@ Additionally, I want to publish a relatively simple but useful browser extension
 
 ### Next Steps
 
-- There is currently no way to disable the extensions. This feature will be coming ASAP. For now, navigate to `about:debugging` and remove the extension to stop excluding.
-- The extension should not refresh the page if there are no categories selected either.
+- Add a button to toggle the extension overall.
+    - This feature will be coming ASAP. For now, navigate to `about:debugging` and remove the extension to stop excluding.
+- The extension should not refresh the page if there are no categories currently selected.
 - The CSS needs major overhaul so it looks and feels right
-    - better drop down buttons
-    - better delete buttons
-    - better add buttons
+    - ~~better drop down buttons~~
+    - ~~better delete buttons~~
+    - ~~better add buttons~~
     - better text inputs
 - An appropriate icon is needed
 - Add support for Yahoo, Bing, Startpage.com, quant.com, searchencrypt.com, gibiru, searx.me, and maybe some others.

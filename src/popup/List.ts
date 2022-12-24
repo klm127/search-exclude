@@ -52,7 +52,7 @@ export class List extends BaseInput<TExclusion.List> {
 
     /** Called when new category button is clicked. Instances a new category, adds it to .data and the DOM */
     private newCategoryClicked() {
-        let nextId = Math.max(...Array.from(this.categories.keys())) + 1
+        let nextId = this.categories.size > 0 ? Math.max(...Array.from(this.categories.keys())) + 1 : 0
         let catData : TExclusion.Category = {
             id: nextId,
             name: "New Category",
