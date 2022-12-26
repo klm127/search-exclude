@@ -6,7 +6,7 @@ It is currently functional on Google and DuckDuckGo, and on Firefox.
 
 Search Exclude is not yet listed on the extension store but can be tested manually. 
 
-![screenshot of the extension](https://raw.githubusercontent.com/klm127/search-exclude/master/readmeScreenshot.png)
+![screenshot of the extension](https://github.com/klm127/search-exclude/raw/master/ReadmeScreenshot.png)
 
 # Rationale
 
