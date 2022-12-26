@@ -29,6 +29,12 @@ Personally, I want to publish a relatively simple but useful browser extension t
 - Perform a search in duckduckgo or Google
 - After the search executes, the page will refresh once to exclude all the sites you have selected
 
+### Developing, Testing
+
+- clone the git repository
+- run `tsc --watch` and `webpack --watch` in terminal processes
+- run `npm test-page` to run the UI testing suite to test components with random data
+
 ### Next Steps
 
 - Add a button to toggle the extension overall.

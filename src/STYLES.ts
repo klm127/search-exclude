@@ -8,6 +8,7 @@ export const STYLES = {
     },
     list: {
         base: "nosearch-list",
+        saveDiv: "nosearch-list-savediv",
         saveButton: "nosearch-list-savebutton",
         saveResult: "nosearch-list-saveresult",
         saveResultFadeAnimation: "nosearch-list-saveresult-saveanimation"

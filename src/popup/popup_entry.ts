@@ -9,7 +9,7 @@ var list: List
 // on popup window, check extension storage for previously saved data and use it to create the list, if it exists.
 browser.storage.local.get(CONSTS.localStorage).then( (v)=> {
     let s_data = v[CONSTS.localStorage]
-    let list_data : TExclusion.List = {orderedList:[]}
+    let list_data : TExclusion.List = {active: true, orderedList:[]}
     if(s_data) {
         let p_data = JSON.parse(s_data)
         if(p_data != undefined && p_data.orderedList) {

@@ -24,6 +24,7 @@ export namespace TExclusion {
     }
 
     type List = {
+        active: boolean,
         orderedList: TExclusion.Category[]
     }
 

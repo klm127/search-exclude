@@ -20,7 +20,7 @@ export class PGenerator {
                 if(listData.orderedList) {
                     return listData as TExclusion.List
                 } else {
-                    return {orderedList: []} as TExclusion.List
+                    return {orderedList: [], active:false} as TExclusion.List
                 }
             }
         }).then( (listData)=> {

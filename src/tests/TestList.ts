@@ -7,6 +7,7 @@ export class TestList extends DRTestWindow<TExclusion.List>{
     constructor() {
         super()
         this.bindStamper({
+            active: true,
             orderedList: [
                 {
                     id: 0,

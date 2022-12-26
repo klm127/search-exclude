@@ -111,12 +111,29 @@ input[type=checkbox]:checked::before {
     100% {opacity: 0;}
 
 }
+
+.nosearch-list-savediv {
+    height: 16px;
+}
+
 .nosearch-list-saveresult-saveanimation {
     animation: fadeOut 0.5s linear 0.5s 1 normal forwards;
     margin: 10px;
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    z-index: 1;
+    cursor: default;
 }
 .nosearch-list-savebutton {
+    position: absolute;
+    top: -10px;
+    left: 20px;
     margin: 10px;
+    z-index: 2;
+    padding: 5px;
+    border: 2px solid blue;
+    cursor: pointer;
 }
 
 
