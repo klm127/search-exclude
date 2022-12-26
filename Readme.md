@@ -6,6 +6,8 @@ It is currently functional on Google and DuckDuckGo, and on Firefox.
 
 Search Exclude is not yet listed on the extension store but can be tested manually. 
 
+![screenshot of the extension](https://raw.githubusercontent.com/klm127/search-exclude/master/readmeScreenshot.png)
+
 # Rationale
 
 Some sites that are less than useful appear frequently in search results and it is tedious to manually include all the site exclusions. By saving toggle-able lists of sites to excludes, search efficiency can be improved.
