@@ -13,7 +13,7 @@ export class List extends BaseInput<TExclusion.List> {
     toggleActive: HTMLInputElement
 
     categories : Map<number, Category>
-    newCategory: HTMLDivElement;
+    newCategory: HTMLButtonElement;
     categoriesContainer: HTMLDivElement;
     saveButton: HTMLButtonElement;
     saveResult: HTMLSpanElement;
@@ -35,16 +35,18 @@ export class List extends BaseInput<TExclusion.List> {
         let toggleActiveDiv = dom.div(undefined, STYLES.list.checkDiv)
         toggleActiveDiv.append(this.toggleActive, toggleActiveLabel)
 
-        this.newCategory = dom.div("category", STYLES.widget.new)
+        let newCatDiv = dom.div(undefined, STYLES.list.newButtonDiv)
+        this.newCategory = dom.button("New Exclude Category")
+        newCatDiv.append(this.newCategory)
+        
         this.categoriesContainer = dom.div()
-
-        this.saveDiv = dom.div(undefined, STYLES.list.saveDiv)
+        this.saveDiv = dom.div(undefined, [STYLES.list.saveDiv, STYLES.animations.fadeout])
         let saveLabel = dom.div("Unsaved changes!")
         this.saveButton = dom.button("save", STYLES.list.saveButton)
         this.saveResult = dom.span("saved!", STYLES.list.saveResult, {display:"none"})
         this.saveDiv.append(saveLabel, this.saveButton, this.saveResult)
 
-        this.el.append(titlediv, toggleActiveDiv, this.saveDiv, this.newCategory, this.categoriesContainer)
+        this.el.append(titlediv, toggleActiveDiv, this.saveDiv, newCatDiv, this.categoriesContainer)
         for(let category of this.data.orderedList) {
             let newCat = new Category(category)
             this.categories.set(category.id, newCat)

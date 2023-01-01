@@ -25,12 +25,13 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
     /** The display for the category name, */
     textName: HTMLSpanElement;
     /** The button for the user to add a new Row. */
-    newRow: HTMLDivElement;
+    newRow: HTMLButtonElement;
+    newRowDiv: HTMLDivElement;
 
     constructor(data: TExclusion.Category) {
         super(data)
         // All CSS styles are in STYLES.ts
-        this.el.classList.add(STYLES.category)
+        this.el.classList.add(STYLES.category.base)
         this.check = dom.check()
         this.check.checked = data.checked        
         // before is part of BaseInputWithTextEntry
@@ -38,12 +39,15 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
         this.text.innerHTML = data.name
         this.xButton = dom.button(undefined, STYLES.widget.trash)
         this.dropDownButton = dom.button(undefined, STYLES.widget.dropdown)
-        this.containedRows = dom.div()
+        this.containedRows = dom.div(undefined, STYLES.category.contained)
         this.containedRows.style.display = "none"
         this.after.append(this.dropDownButton, this.xButton)
-        this.newRow = dom.div("row", STYLES.widget.new)
-        this.containedRows.append(this.newRow)
-        this.el.append(this.containedRows)
+
+        this.newRowDiv = dom.div(undefined, STYLES.category.newDiv, {display:"none"});
+        this.newRow = dom.button("add url");
+        this.newRowDiv.append(this.newRow)
+
+        this.el.append(this.newRowDiv, this.containedRows)
         this.instancedRows = new Map()
         this.createRows()
         this.listen()
@@ -66,18 +70,22 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
             // this is important; it allows Row to emit its events on this.el
             nRow.addEmitter(this.el)
             this.instancedRows.set(row.id, nRow)
-            this.containedRows.insertBefore(nRow.el, this.containedRows.firstChild)
-            this.containedRows.insertBefore(this.newRow, this.containedRows.firstChild)
-
+            if(this.containedRows.firstChild) {
+                this.containedRows.insertBefore(nRow.el, this.containedRows.firstChild)
+            } else {
+                this.containedRows.append(nRow.el)
+            }
         }
     }
     /** shows or hides the containedRows div when button clicked; internal listener */
     private toggleDropDown() {
         if(this.containedRows.style.display == "block") {
             this.containedRows.style.display = "none"
+            this.newRowDiv.style.display = "none"
             this.dropDownButton.classList.remove(STYLES.widget.dropdown_reversed)
         } else {
             this.containedRows.style.display = "block"
+            this.newRowDiv.style.display = "block"
             this.dropDownButton.classList.add(STYLES.widget.dropdown_reversed)
         }
     }
@@ -134,8 +142,11 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
         this.data.items.push(rowdata)
         this.instancedRows.set(next_id, nRow)
         nRow.addEmitter(this.el)
-        this.containedRows.insertBefore(nRow.el, this.containedRows.firstChild)
-        this.containedRows.insertBefore(this.newRow, this.containedRows.firstChild)
+        if(this.containedRows.firstChild) {
+            this.containedRows.insertBefore(nRow.el, this.containedRows.firstChild)
+        } else {
+            this.containedRows.append(nRow.el)
+        }
         nRow.focus()
     }
 

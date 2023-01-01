@@ -1,6 +1,12 @@
 export const STYLES = {
-    row : "nosearch-row",
-    category: "nosearch-category",
+    row : {
+        base: "nosearch-row",
+    },
+    category: {
+        base: "nosearch-category",
+        newDiv: "nosearch-category-newurldiv",
+        contained: "nosearch-category-contained"
+    },
     baseInput: {
         before: "bi-before",
         text: "bi-text",
@@ -14,7 +20,8 @@ export const STYLES = {
         saveDiv: "nosearch-list-savediv",
         saveButton: "nosearch-list-savebutton",
         saveResult: "nosearch-list-saveresult",
-        saveResultFadeAnimation: "nosearch-list-saveresult-saveanimation"
+        saveResultFadeAnimation: "nosearch-list-saveresult-saveanimation",
+        newButtonDiv: "nosearch-list-newcatdiv"
     },
     widget: {
         dropdown: "dropdownbutton-up",

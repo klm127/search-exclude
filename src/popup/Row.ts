@@ -16,6 +16,7 @@ export class Row extends BaseInputWithTextEntry<TExclusion.Row> {
     check: HTMLInputElement;
     constructor(data:TExclusion.Row) {
         super(data)
+        this.el.classList.add(STYLES.row.base)
         this.check = dom.check()
         this.check.checked = data.active
         this.xButton = dom.button("", STYLES.widget.trash)

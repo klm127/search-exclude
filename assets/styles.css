@@ -1,12 +1,39 @@
-/* List styling controls the overall look of the extension. */
+/* Fonts */
+    @font-face {
+        font-family: "Rubik-Light";
+        src: url("./fonts/Rubik-Light.ttf");
+    }
+    @font-face {
+        font-family: "Rubik-Black";
+        src: url("./fonts/Rubik-Black.ttf");
+    }
+    @font-face {
+        font-family: "Rubik-SemiBold";
+        src: url("./fonts/Rubik-SemiBold.ttf");
+    }
+    @font-face {
+        font-family: "Rubik-Bold";
+        src: url("./fonts/Rubik-Bold.ttf");
+    }
+
+/* Global elements */
+    body {
+        font-family: Rubik-Light;
+    }
+
+/* List base. */
     .nosearch-list {
-        width: 400px;
+        width: 384px;
         background-color: #303030;
         color: white;
+        padding-bottom: 96px;
+        padding-top: 24px;
+        padding-left: 12px;
+        padding-right: 12px;
     }
     .nosearch-list-checkdiv {
         text-align: center;
-        line-height: 3em;
+        line-height: 32px;
     }
 /* Styling the title div */
     .nosearch-list-titlediv {
@@ -16,52 +43,60 @@
         margin-left: auto;
         margin-right: auto;
         width: 100px;
-        padding-top: 2px;
-        padding-bottom: 3px;
-        font-size: 10px;
+        padding-top: 4px;
+        padding-bottom: 8px;
+        font-size: 12px;
+        font-family: "Rubik-Light";
+        user-select: none;
     }
 
 /* Overall toggle button */
+    .nosearch-list-checkdiv {
+        margin-bottom: 24px;
+        margin-top: 24px;
+    }
     .nosearch-list-checkdiv input[type=checkbox] {
         position: relative;
         appearance: none;
         cursor: pointer;
-        width: 58px;
-        height: 20px;
-        margin-top: auto;
+        width: 64px;
+        height: 24px;
+        margin-top: 8px;
         margin-bottom: auto;
+        box-sizing: border-box;
         background-color: #ebebeb;
         border: 2px outset #bcbcbc; }
     .nosearch-list-checkdiv input[type=checkbox]::before {
         position: absolute;
         content: " ";
-        top: 2px;
-        left: 2px;
-        height: 14px;
-        width: 14px;
+        top: 0px;
+        left: 0px;
+        height: 20px;
+        width: 16px;
         background-color: black;
         border: 2px groove #bcbcbc;
         box-sizing: border-box;
         transition: 100ms;}
     .nosearch-list-checkdiv input[type=checkbox]::after {
+        font-family: Rubik-SemiBold;
         content: "Inactive";
-        font-size: 10px;
+        font-size: 12px;
         text-align: right;
         position: absolute;
-        width: 60px;
+        width: 64px;
         top: 0px;
-        left: -66px;}
+        left: -72px;}
     .nosearch-list-checkdiv input[type=checkbox]:checked::before {
-        transform: translateX(38px);
+        transform: translateX(44px);
         transition: 100ms;
-        width: 14px;}
+        width: 16px;}
     .nosearch-list-checkdiv input[type=checkbox]:checked::after {
         content: "Actively Excluding";
         position: absolute;
         text-align: left;
         top: 0px;
-        width: 60px;
-        left: 62px;
+        width: 64px;
+        left: 72px;
     }
 
 /* General animations  */
@@ -89,17 +124,34 @@
         text-align: center;
         font-size: 12px;
         margin-bottom: 5px;
+        user-select: none;
     }
     .nosearch-list-savebutton {
         position: absolute;
         top: 18px;
-        left: 53px;
+        left: 51px;
         border-radius: 0px;
         background-color: black;
         border: 2px outset white;
         color: white;
-        padding-left: 8px;
-        padding-right: 8px;
+        padding-left: 9px;
+        padding-right: 9px;
+        cursor: pointer;
+    }
+    .nosearch-list-savebutton:hover {
+        background-color: rgb(30,20,20);
+    }
+
+/* new category button */
+    .nosearch-list-newcatdiv {
+        padding-bottom: 24px;
+        text-align: center;
+    }
+    .nosearch-list-newcatdiv button {
+        border-radius: 0px;
+        font-size: 12px;
+        padding: 8px;
+        font-family: Rubik-SemiBold;
     }
 
 /* Drop down button images */
@@ -115,8 +167,10 @@
         margin: 5px;
         padding: 0px;
         padding-top: 5px;
-        cursor: pointer; }
-    /* Trash button image */
+        cursor: pointer; 
+    }
+
+/* Trash button image */
     .trashbutton {
         background-image: url("icons/trash.svg");
         border: 0px;
@@ -130,4 +184,27 @@
         background-repeat: no-repeat;
         background-origin: content-box;
         cursor: pointer; 
+    }
+
+/* Category */
+    .nosearch-category-newurldiv {
+        padding-left: 48px;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        background-color: #797979;
+    }
+    .nosearch-category-newurldiv button {
+        border-radius: 0px;
+        font-family: Rubik-Bold;
+    }
+
+    .nosearch-category-contained {
+        background-color: #797979;
+    }
+
+/* Row */
+
+    .nosearch-row {
+        margin-left: 36px;
+        padding-bottom: 24px;
     }
