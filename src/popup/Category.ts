@@ -104,8 +104,9 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
                 break;
             }
         }
-        console.log(e.detail, "now splicing ", i, "1")
+        //console.log(e.detail, "now splicing ", i, "1")
         this.data.items.splice(i, 1)
+        this.emitUpdate()
     }
 
     /** dispatched by Row when data changes; e.g. check button toggled, url changed */

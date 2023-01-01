@@ -36,7 +36,7 @@ export class List extends BaseInput<TExclusion.List> {
         toggleActiveDiv.append(this.toggleActive, toggleActiveLabel)
 
         let newCatDiv = dom.div(undefined, STYLES.list.newButtonDiv)
-        this.newCategory = dom.button("New Exclude Category")
+        this.newCategory = dom.button("New Category")
         newCatDiv.append(this.newCategory)
         
         this.categoriesContainer = dom.div()
