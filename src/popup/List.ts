@@ -27,21 +27,24 @@ export class List extends BaseInput<TExclusion.List> {
         this.categories = new Map()
         // console.log("list created", data.orderedList)
 
+        let titlediv = dom.div(STYLES.list.title, STYLES.list.titleDiv)
+
         this.toggleActive = dom.check()
         this.toggleActive.checked = data.active
-        let toggleActiveLabel = dom.span("Site blocking active?")
-        let toggleActiveDiv = dom.div()
+        let toggleActiveLabel = dom.span("")
+        let toggleActiveDiv = dom.div(undefined, STYLES.list.checkDiv)
         toggleActiveDiv.append(this.toggleActive, toggleActiveLabel)
 
         this.newCategory = dom.div("category", STYLES.widget.new)
         this.categoriesContainer = dom.div()
 
-        this.saveDiv = dom.div(undefined, STYLES.list.saveDiv, {position:"relative"})
-        this.saveButton = dom.button("save changes", STYLES.list.saveButton, {display:"none"})
-        this.saveResult = dom.span("", STYLES.list.saveResult)
-        this.saveDiv.append(this.saveButton, this.saveResult)
+        this.saveDiv = dom.div(undefined, STYLES.list.saveDiv)
+        let saveLabel = dom.div("Unsaved changes!")
+        this.saveButton = dom.button("save", STYLES.list.saveButton)
+        this.saveResult = dom.span("saved!", STYLES.list.saveResult, {display:"none"})
+        this.saveDiv.append(saveLabel, this.saveButton, this.saveResult)
 
-        this.el.append(toggleActiveDiv, this.saveDiv, this.newCategory, this.categoriesContainer)
+        this.el.append(titlediv, toggleActiveDiv, this.saveDiv, this.newCategory, this.categoriesContainer)
         for(let category of this.data.orderedList) {
             let newCat = new Category(category)
             this.categories.set(category.id, newCat)
@@ -84,7 +87,7 @@ export class List extends BaseInput<TExclusion.List> {
      */
     private onListActivetoggle(e: CustomEvent<TExclusion.List>) {
         this.data.active = !this.data.active
-        this.saveButton.style.display = "inline-block"
+        this.showSaveDiv()
     }
 
     /** called when an event fired by clicking the "X" button of any contained row is detected. That row is deleted and removed from the data. */
@@ -107,7 +110,13 @@ export class List extends BaseInput<TExclusion.List> {
 
     /** Called when something updates on an inner category. Shows the save button. */
     private onCategoryUpdate(e: CustomEvent<TExclusion.Category>) {
+        this.showSaveDiv();
+    }
+
+    private showSaveDiv() {
         this.saveButton.style.display = "inline-block"
+        this.saveDiv.classList.remove(STYLES.animations.fadeout)
+        this.saveDiv.classList.add(STYLES.animations.fadein)
     }
 
     /** Called when save button is clicked. */
@@ -118,6 +127,9 @@ export class List extends BaseInput<TExclusion.List> {
 
         this.saveResult = dom.span("Saved!", STYLES.list.saveResultFadeAnimation)
         this.saveDiv.append(this.saveResult)
+
+        this.saveDiv.classList.remove(STYLES.animations.fadein)
+        this.saveDiv.classList.add(STYLES.animations.fadeout)
 
         this.emitUpdate()
 

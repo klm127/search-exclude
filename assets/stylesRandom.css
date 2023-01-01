@@ -1,0 +1,273 @@
+@font-face {
+    font-family: "Rubik";
+    src: url("./fonts/Rubik-Light.ttf");
+}
+
+body {
+    background-color: white;
+    font-family: "Rubik";
+    min-width: 400px;
+}
+
+/** 
+    ~ From STYLES.category constant.
+**/
+.nosearch-category {
+    background-color: rgb(222, 222, 232);
+    padding: 4px;
+}
+.nosearch-category > div {
+    padding-left: 1em;
+}
+
+input[type="text"] {
+    font-family: "Rubik";
+}
+
+/** 
+    ~ For all checkboxes. 
+**/
+input[type=checkbox] {
+    box-sizing: border-box;
+    /* appearance: none removes the default styling. */
+    appearance: none;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px dotted darkgray;
+    border-radius: 2px;
+    flex-shrink: 0;
+    background-color: rgb(255,255,255,0.95);
+    cursor:pointer;
+}
+input[type=checkbox]::before {
+    box-sizing: border-box;
+    display: inline-block;
+    content:"";
+    margin:auto;
+    border-bottom: 3px solid darkred;
+    border-right: 3px solid darkred;
+    animation: fadeout_check 0.2s;
+    animation-fill-mode: forwards;
+    width: 40%;
+    height: 80%;
+    margin-left: 5px;
+    margin-right: 20px;
+}
+input[type=checkbox]:hover {
+    border: 1px solid gray;
+    background-color: white;
+}
+input[type=checkbox]:checked {
+    border: 1px solid gray;
+    background-color: white;
+}
+@keyframes fadeout_check {
+    from {
+        opacity: 100%;
+        transform: rotate(45deg);
+    }
+    to {
+        opacity: 0%;
+        transform: rotate(45deg);
+    }
+}
+@keyframes fadein_check {
+    from {
+        opacity: 20%;
+        transform: rotate(100deg);
+    }
+    to {
+        opacity: 100%;
+        transform: rotate(45deg);
+    }
+}
+input[type=checkbox]:checked::before {
+    animation: fadein_check 0.1s ease-out;
+    animation-fill-mode: forwards;
+}
+
+/** 
+    ~ From STYLES.baseInput const. 
+*/
+.bi-before {
+    width: 25px;
+}
+.bi-text {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.bi-after {
+    display: flex;
+    justify-content: right;
+    margin-left: auto;
+}
+/** 
+    ~ From STYLES.list const. 
+*/
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+
+}
+
+.nosearch-list-savediv {
+    height: 16px;
+}
+
+.nosearch-list-saveresult-saveanimation {
+    animation: fadeOut 0.5s linear 0.5s 1 normal forwards;
+    margin: 10px;
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    z-index: 1;
+    cursor: default;
+}
+.nosearch-list-savebutton {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    margin: 10px;
+    z-index: 2;
+    padding: 5px;
+    border: 2px solid blue;
+    cursor: pointer;
+}
+
+
+/**
+    ~ From STYLES.widget.
+**/
+.dropdownbutton-up {
+    background-image: url("icons/down.svg");
+    width: 18px;
+    height: 18px;
+    border: none;
+    background-color: rgba(0,0,0,0);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    margin: 5px;
+    padding: 0px;
+    padding-top: 5px;
+    cursor: pointer;
+    animation: flipvertToUp 0.1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+@keyframes flipvertToUp {
+    0% {
+        transform: rotate(180deg);
+    }
+    100% {
+    }
+}
+@keyframes flipvertToDown {
+    0% {
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+.dropdownbutton-reversed {
+    background-position: 0%;
+    animation: flipvertToDown 0.1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    filter: invert();
+}
+
+.dropdownbutton-up:hover {
+    filter: saturate(40);
+}
+
+/** From STYLES.widget.trash const */
+
+.trashbutton {
+    border: 0px;
+    background-color: rgba(0,0,0,0);
+    appearance: none;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    margin: 0px;
+    padding: 1px;
+    box-sizing: border-box;
+    background-image: url("./icons/trash.svg");
+    
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    cursor: pointer;
+}
+
+
+.trashbutton:after {
+    content: ' ';
+    width: 20px;
+    height: 20px;
+    background-color: red; 
+}
+@keyframes trashin {
+    0% {} 100%{
+        filter: sepia(100%) drop-shadow(1px 1px rgb(73, 71, 71));
+
+    }
+}
+
+.trashbutton:hover {
+    animation: trashin 0.2s;
+    animation-fill-mode: forwards;
+}
+
+/** From STYLES.widget.new **/
+
+.newbutton {
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+    text-shadow: 2px 2px white;
+}
+.newbutton:before {
+    content: "new ";
+}
+.newbutton:after {
+    opacity: 0%;
+    position: absolute;
+    content: "✨";
+    left: 0px;
+}
+@keyframes slideRight {
+    0% {opacity: 0%} 100% {
+        left:110px; 
+        opacity:100%;}
+}
+.newbutton:hover {
+    animation: vibrate 0.2s linear;
+    text-shadow: 1px 1px rgb(247, 203, 57);
+}
+.newbutton:hover:after {
+    animation: slideRight 1s;
+    animation-fill-mode: forwards;
+    text-shadow:none;
+}
+@keyframes spin {
+    0% {
+    }
+    100% {
+        transform: rotate(359deg);
+    }
+}
+.newbutton:active:after {
+    left: 110px;
+    opacity: 1;
+    animation: spin 0.1s linear 0s infinite;
+}
+.newbutton:active {
+    animation: vibrate 0.2s linear;
+    text-shadow: 2px 2px rgb(204, 185, 185);
+}
