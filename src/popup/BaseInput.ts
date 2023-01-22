@@ -95,13 +95,15 @@ export class BaseInputWithTextEntry<T> extends BaseInput<T>{
     textZone: HTMLSpanElement
     textInput: HTMLInputElement
     text: HTMLSpanElement
+    headerContainer: HTMLElement
     constructor(data: T) {
         super(data)
+        this.headerContainer = dom.el("article");
         this.before = dom.span(undefined, STYLES.baseInput.before, {display:"inline-flex"})
         this.textZone = dom.span(undefined, STYLES.baseInput.text, {display:"inline-flex"})
         this.after = dom.span(undefined, STYLES.baseInput.after, {display:"inline-flex"})
-
-        this.el.append(this.before, this.textZone, this.after)
+        this.headerContainer.append(this.before, this.textZone, this.after);
+        this.el.append(this.headerContainer);
 
         this.text = dom.span()
         this.textInput = dom.textInput(undefined, undefined, {display:"none"})

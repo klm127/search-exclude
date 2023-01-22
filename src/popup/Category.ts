@@ -43,6 +43,8 @@ export class Category extends BaseInputWithTextEntry<TExclusion.Category> {
         this.containedRows.style.display = "none"
         this.after.append(this.dropDownButton, this.xButton)
 
+        this.headerContainer.classList.add(STYLES.category.header);
+
         this.newRowDiv = dom.div(undefined, STYLES.category.newDiv, {display:"none"});
         this.newRow = dom.button("add url");
         this.newRowDiv.append(this.newRow)

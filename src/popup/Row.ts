@@ -22,6 +22,9 @@ export class Row extends BaseInputWithTextEntry<TExclusion.Row> {
         this.xButton = dom.button("", STYLES.widget.trash)
         this.text.innerHTML = this.data.url ? this.data.url : "No URL"
         this.textInput.placeholder = "Input URL to block here."
+        
+        this.headerContainer.classList.add(STYLES.row.header);
+
         this.before.append(this.check)
         this.after.append(this.xButton)
         this.listen()

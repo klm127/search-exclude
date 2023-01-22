@@ -1,11 +1,13 @@
 export const STYLES = {
     row : {
         base: "nosearch-row",
+        header: "nosearch-row-header"
     },
     category: {
         base: "nosearch-category",
         newDiv: "nosearch-category-newurldiv",
-        contained: "nosearch-category-contained"
+        contained: "nosearch-category-contained",
+        header: "nosearch-category-header"
     },
     baseInput: {
         before: "bi-before",
