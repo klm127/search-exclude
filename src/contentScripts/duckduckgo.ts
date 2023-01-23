@@ -19,7 +19,7 @@ function redirectIfNecessary() {
     // if its not true, a redirect has not yet occurred and we should add the custom parameters.
     if(val != "true") {
         let new_params = getDuckDuckGoParams(pg, params)
-        document.location = "https://www.google.com/search?" + new_params.toString() 
+        document.location = "https://www.duckduckgo.com/?" + new_params.toString() 
         // browser storage accessed asynchronously
         } else {
             console.log("s-red was not true!")
